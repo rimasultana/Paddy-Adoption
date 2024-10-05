@@ -19,7 +19,10 @@
       rel="stylesheet"
     />
     <!-- font awesome -->
-    <script src="https://kit.fontawesome.com/da72d6e058.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/da72d6e058.js"
+      crossorigin="anonymous"
+    ></script>
     <script>
       tailwind.config = {
         theme: {
@@ -37,22 +40,58 @@
   </head>
   <body class="font-lato">
     <header>
-        <nav class="flex justify-between items-center w-11/12 mx-auto pt-5 ">
-            <div class="flex items-center gap-2">
-                <img src="images/logo.webp" alt="">
-                <h2 class="lg:text-3xl md:text-2xl text-xl font-bold">Peddy</h2>
+      <nav
+        class="navbar flex justify-between items-center w-11/12 mx-auto pt-5"
+      >
+        <div class="navbar-start">
+          <div class="flex items-center gap-2">
+            <img src="images/logo.webp" alt="" />
+            <h2 class="lg:text-3xl md:text-2xl text-lg font-bold">Peddy</h2>
+          </div>
+        </div>
+        <div class="navbar-center lg:text-lg text-sm lg:flex">
+          <ul class="flex gap-2 md:gap-3 lg:gap-8">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <div
+            class="border-2 border-primary text-primary w-9 h-9 rounded-full text-center shadow-md shadow-white"
+          >
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+        </div>
+      </nav>
+      <!-- banner -->
+      <section class="mt-14 text-center w-11/12 mx-auto">
+        <div class="hero ">
+          <div class="hero-content text-center">
+            <div class="w-11/12 mx-auto ">
+              <h3 class="lg:text-2xl md:text-2xl text-lg font-medium">
+                Bringing Families Together ❤️‍🔥
+              </h3>
+              <h1 class="lg:text-4xl md:text-3xl text-2xl font-bold mt-5">
+                Your Path to Adoption Starts Here
+              </h1>
+              <p class="mt-4 mb-4">
+                we believe that every child deserves a loving home. Whether
+                you're considering adoption for the first time <br> or are looking to
+                grow your family, we are here to guide you every step of the
+                way.
+                </p>
+                <button class="btn bg-primary text-white">View More</button>
+                <img src="images/pet.webp" alt="" />
+              </p>
             </div>
-            <div class="lg:text-lg md:text-sm text-sm text-gray-500 space-x-5 ">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <a href="#">Contact</a>
-            </div>
-            <div class="border-2 border-primary text-primary w-9 h-9 rounded-full text-center shadow-md shadow-white ">
-                <i class="fa-solid fa-user-tie"></i>
-            </div>
-        </nav>
+          </div>
+        </div>
+      </section>
     </header>
 
     <script src="js/index.js"></script>
   </body>
 </html>
+
+
