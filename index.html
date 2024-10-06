@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -81,7 +81,9 @@
                 looking to grow your family, we are here to guide you every step
                 of the way.
               </p>
-              <button class="btn bg-primary text-white">View More</button>
+              <button class="btn bg-primary text-white">
+                <a href="#main-part">View More</a>
+              </button>
               <img src="images/pet.webp" alt="" />
             </div>
           </div>
@@ -89,41 +91,65 @@
       </section>
     </header>
 
+    <!-- main -->
+    <main id="main-part" class="m-20">
+      <div class="text-center space-y-3">
+        <h1 class="text-xl md:text-2xl lg:text-4xl font-bold">
+          Adopt Your Best Friend
+        </h1>
+        <p class="pb-5">
+          it's an invitation to bring unconditional love into your life. Pets
+          are not only companions but also loyal friends who offer joy, comfort,
+          and boundless affection. <br />
+          By choosing adoption, you not only save a life but also gain a best
+          friend who will stand by you through all of life's ups and downs.
+        </p>
+      </div>
+      <div id="caterories" class=" w-11/12 mx-auto
+       flex justify-between items-center gap-5 py-5 ">
+
+      </div>
+    </main>
+
     <footer class="bg-black">
-        <div class="w-11/12 mx-auto text-gray-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center">
-          <div class="space-y-5 mb-8 md:mb-0">
-            <div class="flex items-center gap-2">
-              <img src="images/logo.webp" alt="Peddy Logo" class="h-10" />
-              <h2 class="lg:text-3xl md:text-2xl text-lg font-bold">Peddy</h2>
-            </div>
-            <p>
-              Location: av. Washington 165, NY CA <br />
-              54003 <br />
-              Phone: +31 85 964 47 25 <br />
-              Email: info@yourdomain.com <br />
-              Openings hours: 9.00 AM - 5.00 PM
-            </p>
+      <div
+        class="w-11/12 mx-auto text-gray-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center"
+      >
+        <div class="space-y-5 mb-8 md:mb-0">
+          <div class="flex items-center gap-2">
+            <img src="images/logo.webp" alt="Peddy Logo" class="h-10" />
+            <h2 class="lg:text-3xl md:text-2xl text-lg font-bold">Peddy</h2>
           </div>
-          <div class="space-y-6 mb-8 md:mb-0">
-            <h2 class="text-xl font-bold mb-5">Useful Links</h2>
-            <a href="#" class="hover:text-primary">Home</a> <br />
-            <a href="#" class="hover:text-primary">About Us</a> <br />
-            <a href="#" class="hover:text-primary">Animals</a> <br />
-            <a href="#" class="hover:text-primary">Foundation</a> <br />
-            <a href="#" class="hover:text-primary">Contact</a>
-          </div>
-          <div class="flex flex-col">
-            <h2 class="text-xl font-bold mb-5">Drop a Message</h2>
-            <input
-              type="text"
-              placeholder="Enter Your Email"
-              class="input border-2 border-primary bg-black text-gray-200 mb-5 px-4 py-2"
-            />
-            <button class="px-16 py-3 rounded-md bg-primary hover:bg-opacity-80">Subscribe</button>
-          </div>
+          <p>
+            Location: av. Washington 165, NY CA <br />
+            54003 <br />
+            Phone: +31 85 964 47 25 <br />
+            Email: info@yourdomain.com <br />
+            Openings hours: 9.00 AM - 5.00 PM
+          </p>
         </div>
-      </footer>
-      
+        <div class="space-y-6 mb-8 md:mb-0">
+          <h2 class="text-xl font-bold mb-5">Useful Links</h2>
+          <a href="#" class="hover:text-primary">Home</a> <br />
+          <a href="#" class="hover:text-primary">About Us</a> <br />
+          <a href="#" class="hover:text-primary">Animals</a> <br />
+          <a href="#" class="hover:text-primary">Foundation</a> <br />
+          <a href="#" class="hover:text-primary">Contact</a>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="text-xl font-bold mb-5">Drop a Message</h2>
+          <input
+            type="text"
+            placeholder="Enter Your Email"
+            class="input border-2 border-primary bg-black text-gray-200 mb-5 px-4 py-2"
+          />
+          <button class="px-16 py-3 rounded-md bg-primary hover:bg-opacity-80">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </footer>
+
     <script src="js/index.js"></script>
   </body>
 </html>
