@@ -108,20 +108,25 @@
         class="w-11/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 hover:rounded-md"
       ></div>
       <section>
-        <div class="flex  justify-between my-5 items-center">
+        <div class="flex justify-between my-5 items-center">
           <h2 class="text-2xl font-bold">Best Deal For you</h2>
-          <button onclick="handleSortOrder('desc')" class="text-white bg-primary btn">Sort by Price</button>        </div>
+          <button
+            id="spinner"
+            onclick="handleSortOrder('desc')"
+            class="text-white bg-primary btn"
+          >
+            Sort by Price
+          </button>
+        </div>
 
-        
-        <div class="flex items-center gap-3 ">
+        <div class="flex items-center gap-3">
           <div
-          id="card-container"
-          class="w-full lg:w-9/12 border-2 h-[600px] border-gray-200 p-8 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
-
-        </div>
-        <div class="w-full lg:w-[25%] h-[600px]  border-2 border-gray-200 rounded-t-lg">
-
-        </div>
+            id="card-container"
+            class="w-full lg:w-9/12 border-2 h-[600px] border-gray-200 p-8 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10"
+          ></div>
+          <div id="img-container"
+            class="w-full lg:w-[25%] h-[600px] border-2 border-gray-200 rounded-t-lg grid grid-cols-1 md:grid-cols-2 gap-2"
+          ></div>
         </div>
       </section>
     </main>

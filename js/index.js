@@ -11,8 +11,6 @@ const loadCategory = async () => {
   }
 };
 
-// Load Cards
-// Load Cards
 const loadCards = async () => {
   try {
     const response = await fetch(
@@ -34,18 +32,30 @@ const loadCards = async () => {
 };
 
 async function handleSortOrder(order = "desc") {
-  const res = await fetch("https://openapi.programming-hero.com/api/peddy/pets");
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/peddy/pets"
+  );
   const data = await res.json();
   const pets = data.pets.slice(0, 3);
   pets.sort((a, b) => {
     const priceA = a.price ?? 0;
     const priceB = b.price ?? 0;
-
     return order === "asc" ? priceA - priceB : priceB - priceA;
   });
-  
-  displayCards(pets); 
+
+  displayCards(pets);
 }
+
+async function showImage(url) {
+  const imgContainer = document.getElementById("img-container");
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Pet Image";
+  img.classList.add("w-full", "h-auto", "rounded-lg");
+
+  imgContainer.appendChild(img);}
+ 
+
 
 
 const categoryCard = async (id) => {
@@ -55,14 +65,12 @@ const categoryCard = async (id) => {
     );
     const data = await response.json();
 
-    // Display 3 cards per category
     displayCards(data.data.slice(0, 3));
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 };
 
-// Display Cards
 function displayCards(items) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
@@ -82,23 +90,16 @@ function displayCards(items) {
     return;
   }
 
+
+  
+
   items.forEach((item) => {
     const card = document.createElement("div");
     card.classList.add("card", "bg-base-100", "overflow-hidden", "shadow-xl");
 
-    const {
-      category,
-      breed,
-      gender,
-      image,
-      price,
-      date_of_birth,
-      pet_name,
-      pet_details,
-      vaccinated_status,
-    } = item;
+    const { category, breed, gender, image, price, date_of_birth, pet_name } =
+      item;
 
-    // Create card HTML
     card.innerHTML = `
     <figure class="">
         <img class="rounded-xl object-cover" src="${image}" alt="${breed}" />
@@ -112,35 +113,24 @@ function displayCards(items) {
             <i class="fa-regular fa-calendar mr-2"></i>
             Birth: ${date_of_birth ? date_of_birth : "Not Available"}
         </p>
-        <p class=""><i class="fa-solid fa-mercury"></i> Gender: ${gender}</p>
+        <p class=""><i class="fa-solid fa-mercury"></i> Gender: ${
+          gender ? gender : ""
+        }</p>
         <p class=""><i class="fa-solid fa-dollar-sign"></i> Price: ${price}$</p>
         <hr class="my-2 sm:my-3 md:my-4"/>
         <div class="flex items-center justify-between space-x-1 sm:space-x-3 md:space-x-4">
-            <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-[10px] sm:text-base md:text-lg"><i class="fa-regular fa-thumbs-up"></i></button>
-            <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary text-[10px] sm:text-base md:text-lg">Adopt</button>
-            <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary text-[10px] sm:text-base md:text-lg">Details</button>
+          <button onclick="showImage('${item.image}')" class="border-2 border-gray-200 px-2 py-1 rounded-lg">
+            <i class="fa-regular fa-thumbs-up"></i>
+            </button>
+              <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary ">Adopt</button>
+            <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary t">Details</button>
         </div>
     </div>
 `;
 
-    // Append card to container
     cardContainer.appendChild(card);
   });
 }
-
-const showSpinner = (event, category) => {
-  const spinner = document.getElementById("spinner");
-  spinner.style.display = "block";
-  spinner.classList.add("spinner");
-
-  setTimeout(() => {
-    spinner.style.display = "none";
-    spinner.classList.remove("spinner");
-    categoryCard(category);
-  }, 2000);
-};
-
-// Display Categories
 const displayCategory = (categories) => {
   const categoryContainer = document.getElementById("categories");
   categoryContainer.innerHTML = "";
@@ -149,8 +139,7 @@ const displayCategory = (categories) => {
     const buttonContainer = document.createElement("div");
 
     buttonContainer.innerHTML = `
-          <button onclick="showSpinner(event, '${item.category}')" class="flex items-center justify-center flex-row lg:py-5 sm:px-3 md:px-10 ">
-              <img src="${item.category_icon}" class="w-7 h-7 mr-2" />
+       <button onclick="categoryCard('${item.category}')" class="flex items-center justify-center flex-row lg:py-5 sm:px-3 md:px-10">              <img src="${item.category_icon}" class="w-7 h-7 mr-2" />
               <span class="text-sm md:text-base">${item.category}</span>
           </button>
     `;
