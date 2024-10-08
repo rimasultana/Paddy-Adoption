@@ -15,13 +15,14 @@ async function loadCategory() {
 }
 function displayCatagoryButton(buttons) {
   const cataegoryContainer = document.getElementById("catagory-container");
-  buttons.forEach(({ category, category_icon }) => {
+  buttons.forEach((caragoris) => {
+    const { category, category_icon } = caragoris;
     const div = document.createElement("div");
     div.classList.add("flex", "justify-center", "cursor-pointer");
     div.innerHTML = `
-    <div
+    <div id="btn-${category}"
           onclick="handleClickLoadData('${category}')"
-          class="text-center hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary w-48 rounded-md py-3"
+          class="text-center hover:bg-primary category-btn  hover:text-white transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary w-48 rounded-md py-3"
         >
           <img
             class="w-10 h-10"
@@ -32,8 +33,11 @@ function displayCatagoryButton(buttons) {
         </div>
     `;
     cataegoryContainer.appendChild(div);
-  });
+  });
 }
+
+
+
 async function handleSortOrder(order = "desc") {
   document.getElementById("spiner").classList.remove("hidden");
   document.getElementById("container").classList.add("hidden");
@@ -63,9 +67,12 @@ async function handleClickLoadData(petsName) {
     `https://openapi.programming-hero.com/api/peddy/category/${petsName}`
   );
   const data = await res.json();
+  removeActiveClass();
+  const activeBtn = document.getElementById(`btn-${petsName}`);
+  activeBtn.classList.add("active");
   setTimeout(() => {
     displayPetsData(data.data);
-  }, 2000);
+  }, 2000);
 }
 
 function handleLikeButton(url) {
@@ -224,7 +231,7 @@ function countModal(button) {
   button.disabled = true;
   button.classList.add("bg-gray-400", "text-white");
   let timerInterval;
-  let countdown = 3; // Start countdown from 3
+  let countdown = 3; 
 
   Swal.fire({
     html: `
@@ -257,6 +264,13 @@ function countModal(button) {
   }).then((result) => {
     console.log("Adoption process is starting for your pet.");
   });
+}
+
+function removeActiveClass() {
+  const buttons = document.getElementsByClassName("category-btn");
+  for (let btn of buttons) {
+    btn.classList.remove("active");
+  }
 }
 
 loadData();
