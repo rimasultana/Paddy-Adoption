@@ -16,5 +16,5 @@ A fully responsive pet adoption platform designed based on a Figma design, featu
 - Promises and async/await for API calls.
 
 ## Live Demo
-Check out the live project [here](#).
+Check out the live project [assignment-6-rima.surge.sh](#).
 # b10a6-pet-adoption-rimasultana
