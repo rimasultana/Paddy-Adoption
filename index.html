@@ -11,6 +11,7 @@
       type="text/css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Font Family -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +24,6 @@
       src="https://kit.fontawesome.com/da72d6e058.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -42,15 +42,15 @@
   <body class="font-lato">
     <header>
       <nav
-        class="navbar flex justify-between items-center w-11/12 mx-auto pt-5"
+        class="navbar flex justify-between items-center w-full px-5 md:w-11/12 mx-auto pt-5"
       >
         <div class="navbar-start">
           <div class="flex items-center gap-2">
-            <img src="images/logo.webp" alt="" />
+            <img src="images/logo.webp" alt="" class="h-10" />
             <h2 class="lg:text-3xl md:text-2xl text-lg font-bold">Peddy</h2>
           </div>
         </div>
-        <div class="navbar-center lg:text-lg text-sm lg:flex">
+        <div class="navbar-center hidden md:block lg:text-lg text-sm lg:flex">
           <ul class="flex gap-2 md:gap-3 lg:gap-8">
             <li><a>Home</a></li>
             <li><a>Shop</a></li>
@@ -59,19 +59,19 @@
         </div>
         <div class="navbar-end">
           <div
-            class="border-2 border-primary text-primary w-9 h-9 rounded-full text-center shadow-md shadow-white"
+            class="border-2 flex justify-center items-center border-primary text-primary w-9 h-9 rounded-full text-center shadow-md shadow-white"
           >
             <i class="fa-solid fa-user-tie"></i>
           </div>
         </div>
       </nav>
       <!-- banner -->
-      <section class="mt-14 text-center w-11/12 mx-auto">
+      <section class="mt-14 text-center w-full md:w-11/12 mx-auto">
         <div class="hero">
           <div class="hero-content text-center">
-            <div class="w-11/12 mx-auto">
+            <div class="w-full md:w-11/12 mx-auto">
               <h3 class="lg:text-2xl md:text-2xl text-lg font-medium">
-                Bringing Families Together ❤️‍🔥
+                Bringing Families Together ❤‍🔥
               </h3>
               <h1 class="lg:text-4xl md:text-3xl text-2xl font-bold mt-5">
                 Your Path to Adoption Starts Here
@@ -85,7 +85,7 @@
               <button class="btn bg-primary text-white">
                 <a href="#main-part">View More</a>
               </button>
-              <img src="images/pet.webp" alt="" />
+              <img src="images/pet.webp" alt="" class="w-full mt-5" />
             </div>
           </div>
         </div>
@@ -93,61 +93,80 @@
     </header>
 
     <!-- main -->
-    <main id="main-part" class="m-20">
-      <div class="text-center space-y-3">
-        <h1 class="text-2xl lg:text-4xl font-bold">Adopt Your Best Friend</h1>
-        <p class="pb-5">
-          it's an invitation to bring unconditional love into your life. Pets
-          are not only companions but also loyal friends who offer joy, comfort,
-          and boundless affection. <br />
-          By choosing adoption, you not only save a life but also gain a best
-          friend who will stand by you through all of life's ups and downs.
-        </p>
-      </div>
+    <main id="main-part" class="m-5 md:m-20">
+      <section>
+        <div class="text-center space-y-3">
+          <h1 class="text-xl md:text-2xl lg:text-4xl font-bold">
+            Adopt Your Best Friend
+          </h1>
+          <p class="pb-5">
+            it's an invitation to bring unconditional love into your life. Pets
+            are not only companions but also loyal friends who offer joy,
+            comfort, and boundless affection. <br />
+            By choosing adoption, you not only save a life but also gain a best
+            friend who will stand by you through all of life's ups and downs.
+          </p>
+        </div>
+      </section>
+      <!-- Catagory section -->
       <div
-        id="categories"
-        class="w-11/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 hover:rounded-md"
+        id="catagory-container"
+        class="button-section w-full md:w-11/12 mx-auto justify-between items-center grid gap-2 grid-cols-2 md:grid-cols-4"
       ></div>
+      <!-- best deal section -->
+      <section class="mx-auto w-full md:w-11/12 my-10">
+        <div class="flex justify-between items-center">
+          <h1 class="font-bold text-2xl">Best Deal For You</h1>
 
-      <div class="flex justify-between my-5 items-center">
-        <h2 class="text-2xl font-bold">Best Deal For you</h2>
-        <button
-          id="spinner"
-          onclick="handleSortOrder('desc')"
-          class="text-white bg-primary btn"
+          <div>
+            <button
+              onclick="handleSortOrder()"
+              class="btn bg-primary text-white"
+            >
+              Sort By Price
+            </button>
+          </div>
+        </div>
+        <div
+          id="spiner"
+          class="w-10 h-10 mx-auto border-4 mt-24 hidden rounded-full animate-spin border-red-600 border-dotted"
+        ></div>
+        <div
+          id="container"
+          class="flex flex-col md:flex-row justify-between gap-2 my-10"
         >
-          Sort by Price
-        </button>
-      </div>
-   <!-- spinner -->
-      <div id="spinner" class="flex hidden">
-        <span
-          class="w-10 h-10 mx-auto border-dashed border-2 border-primary rounded-full animate-spin"
-        ></span>
-      </div>
-      <div id="container" class="flex items-center gap-3">
-        <div
-          id="card-container"
-          class="w-full lg:w-9/12 border-2 h-[600px] border-gray-200 p-8 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10"
-        ></div>
-        <div
-          id="img-container"
-          class="w-full lg:w-[25%] h-[600px] border-2 border-gray-200 rounded-t-lg grid grid-cols-1 md:grid-cols-2 gap-2"
-        ></div>
-      </div>
+          <div
+            id="card-container"
+            class="border-2 grid min-h-[440px] grid-cols-1 gap-2 p-2 py-5 md:grid-cols-2 lg:grid-cols-3 border-rose-100 w-full"
+          ></div>
+          <div
+            id="noData"
+            class="w-full hidden flex-col justify-center items-center min-h-[440px] border-2 text-center border-rose-100"
+          >
+            <img src="/images//error.webp" alt="" />
+            <p class="text-2xl font-bold">No Information Available mara khao</p>
+            <p class="w-[80%]">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a.
+            </p>
+          </div>
+          <div
+            id="image-container"
+            class="grid grid-cols-2 gap-2 px-3 py-3 border-2 min-h-[465px] border-rose-100 overflow-hidden w-full md:w-[25%]"
+          ></div>
+        </div>
+      </section>
     </main>
-    <!-- spinner -->
 
-    <!-- modal -->
+    <!-- Modal -->
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-      <div id="modal-box" class="modal-box">
-
-      </div>
+      <div id="modal" class="modal-box"></div>
     </dialog>
 
-    <footer class="bg-black">
+    <footer class="bg-black px-20">
       <div
-        class="w-11/12 mx-auto text-gray-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center"
+        class="w-full md:w-11/12 mx-auto text-gray-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center"
       >
         <div class="space-y-5 mb-8 md:mb-0">
           <div class="flex items-center gap-2">
@@ -183,30 +202,6 @@
         </div>
       </div>
     </footer>
-
     <script src="js/index.js"></script>
   </body>
 </html>
-
-
-   <!-- <figure class="">
-          <img class="rounded-xl object-cover" src="https://i.ibb.co.com/s3PXSwD/pet-3.jpg" alt="${breed}" />
-      </figure>
-        <h3 class="text-lg sm:text-xl md:text-2xl">${pet_name}</h3>
-        <p class=""><i class="fa-solid fa-border-all"></i> Breed: ${
-          breed ? date_of_birth : "Not Available"
-        }</p>
-        <p class="">
-            <i class="fa-regular fa-calendar mr-2"></i>
-            Birth: ${date_of_birth ? date_of_birth : "Not Available"}
-        </p>
-        <p class=""><i class="fa-solid fa-mercury"></i> Gender: ${
-          gender ? gender : ""
-        }</p>
-        <p class=""><i class="fa-solid fa-dollar-sign"></i> Price: ${price}$</p>
-        <hr class="my-2 sm:my-3 md:my-4"/>
-        <div class="modal-action">
-          <form method="dialog flex">
-            <button class="btn text-center">Cancel</button>
-          </form>
-        </div> -->
