@@ -23,6 +23,7 @@
       src="https://kit.fontawesome.com/da72d6e058.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -107,34 +108,43 @@
         id="categories"
         class="w-11/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 hover:rounded-md"
       ></div>
-      <section>
-        <div class="flex justify-between my-5 items-center">
-          <h2 class="text-2xl font-bold">Best Deal For you</h2>
-          <button
-            id="spinner"
-            onclick="handleSortOrder('desc')"
-            class="text-white bg-primary btn"
-          >
-            Sort by Price
-          </button>
-        </div>
 
-        <div class="flex items-center gap-3">
-          <div
-            id="card-container"
-            class="w-full lg:w-9/12 border-2 h-[600px] border-gray-200 p-8 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10"
-          ></div>
-          <div id="img-container"
-            class="w-full lg:w-[25%] h-[600px] border-2 border-gray-200 rounded-t-lg grid grid-cols-1 md:grid-cols-2 gap-2"
-          ></div>
-        </div>
-      </section>
+      <div class="flex justify-between my-5 items-center">
+        <h2 class="text-2xl font-bold">Best Deal For you</h2>
+        <button
+          id="spinner"
+          onclick="handleSortOrder('desc')"
+          class="text-white bg-primary btn"
+        >
+          Sort by Price
+        </button>
+      </div>
+   <!-- spinner -->
+      <div id="spinner" class="flex hidden">
+        <span
+          class="w-10 h-10 mx-auto border-dashed border-2 border-primary rounded-full animate-spin"
+        ></span>
+      </div>
+      <div id="container" class="flex items-center gap-3">
+        <div
+          id="card-container"
+          class="w-full lg:w-9/12 border-2 h-[600px] border-gray-200 p-8 rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10"
+        ></div>
+        <div
+          id="img-container"
+          class="w-full lg:w-[25%] h-[600px] border-2 border-gray-200 rounded-t-lg grid grid-cols-1 md:grid-cols-2 gap-2"
+        ></div>
+      </div>
     </main>
     <!-- spinner -->
-    <span
-      id="spinner"
-      class="loading hidden loading-spinner text-success w-7 mx-auto mt-7"
-    ></span>
+
+    <!-- modal -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div id="modal-box" class="modal-box">
+
+      </div>
+    </dialog>
+
     <footer class="bg-black">
       <div
         class="w-11/12 mx-auto text-gray-200 py-12 flex flex-col md:flex-row justify-between items-start md:items-center"
@@ -177,3 +187,26 @@
     <script src="js/index.js"></script>
   </body>
 </html>
+
+
+   <!-- <figure class="">
+          <img class="rounded-xl object-cover" src="https://i.ibb.co.com/s3PXSwD/pet-3.jpg" alt="${breed}" />
+      </figure>
+        <h3 class="text-lg sm:text-xl md:text-2xl">${pet_name}</h3>
+        <p class=""><i class="fa-solid fa-border-all"></i> Breed: ${
+          breed ? date_of_birth : "Not Available"
+        }</p>
+        <p class="">
+            <i class="fa-regular fa-calendar mr-2"></i>
+            Birth: ${date_of_birth ? date_of_birth : "Not Available"}
+        </p>
+        <p class=""><i class="fa-solid fa-mercury"></i> Gender: ${
+          gender ? gender : ""
+        }</p>
+        <p class=""><i class="fa-solid fa-dollar-sign"></i> Price: ${price}$</p>
+        <hr class="my-2 sm:my-3 md:my-4"/>
+        <div class="modal-action">
+          <form method="dialog flex">
+            <button class="btn text-center">Cancel</button>
+          </form>
+        </div> -->

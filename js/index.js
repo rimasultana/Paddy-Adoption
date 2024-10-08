@@ -45,7 +45,7 @@ async function handleSortOrder(order = "desc") {
 
   displayCards(pets);
 }
-
+// showImage
 async function showImage(url) {
   const imgContainer = document.getElementById("img-container");
   const img = document.createElement("img");
@@ -53,8 +53,103 @@ async function showImage(url) {
   img.alt = "Pet Image";
   img.classList.add("w-full", "h-auto", "rounded-lg");
 
-  imgContainer.appendChild(img);}
- 
+  imgContainer.appendChild(img);
+}
+
+/* const loadSpinner = () => {
+  document.getElementById('spinner').style.display= 'none';
+  document.getElementById('container').style.display="block";
+};
+
+const handleSearch = () => {
+  document.getElementById('spinner').style.display= 'block';
+    document.getElementById('container').style.display="hidden";
+  setTimeout(function () {
+    loadSpinner(); 
+  }, 2000);
+}; */
+
+
+// sweetalert
+async function showModal(id) {
+  const modalBox = document.getElementById('modal-box');
+  modalBox.innerHTML = '';
+
+  try {
+    const response = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
+    const data = await response.json();
+
+    // Create a modal card for the fetched data
+    const modalCard = document.createElement('div');
+    const { category, breed, gender, image, price, date_of_birth, pet_name } = data; 
+
+    modalCard.innerHTML = `
+      <figure class="">
+        <img class="rounded-xl object-cover" src="${image}" alt="${breed}" /> <!-- Fixed the image src -->
+      </figure>
+      <h3 class="text-lg sm:text-xl md:text-2xl">${pet_name}</h3>
+      <p class=""><i class="fa-solid fa-border-all"></i> Breed: ${breed ? breed : "Not Available"}</p>
+      <p class="">
+        <i class="fa-regular fa-calendar mr-2"></i>
+        Birth: ${date_of_birth ? date_of_birth : "Not Available"}
+      </p>
+      <p class=""><i class="fa-solid fa-mercury"></i> Gender: ${gender ? gender : "Not Available"}</p>
+      <p class=""><i class="fa-solid fa-dollar-sign"></i> Price: ${price ? price : "Not Available"}$</p>
+      <hr class="my-2 sm:my-3 md:my-4"/>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn text-center">Cancel</button>
+        </form>
+      </div>
+    `;
+
+    modalBox.appendChild(modalCard);
+
+    document.getElementById('my_modal_5').showModal();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+// countModal
+function countModal() {
+  let timerInterval;
+  let countdown = 3; // Start countdown from 3
+
+  Swal.fire({
+    html: `
+      <div class="flex items-center flex-col"> 
+        <img src="https://img.icons8.com/?size=80&id=aUiThmwNs5sO&format=png" style="width: 80px; height: auto;" />  
+        <br/>
+        <strong class="text-3xl font-bold">Congratulations</strong><br/>
+        Adoption process is starting for your pet.<br/>
+        <b class="text-2xl text-primary">${countdown}</b>
+      </div>
+    `, 
+    timer: 3000, 
+    timerProgressBar: true,
+    showConfirmButton: false, 
+    didOpen: () => {
+      const timer = Swal.getPopup().querySelector("b");
+
+      timerInterval = setInterval(() => {
+        countdown--;
+        timer.textContent = countdown > 0 ? countdown : 0; 
+
+        if (countdown <= 0) {
+          clearInterval(timerInterval);
+        }
+      }, 1000); 
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    }
+  }).then((result) => {
+    console.log("Adoption process is starting for your pet.");
+  });
+}
+
 
 
 
@@ -73,6 +168,9 @@ const categoryCard = async (id) => {
 
 function displayCards(items) {
   const cardContainer = document.getElementById("card-container");
+
+
+  
   cardContainer.innerHTML = "";
 
   if (items.length === 0) {
@@ -89,9 +187,6 @@ function displayCards(items) {
 
     return;
   }
-
-
-  
 
   items.forEach((item) => {
     const card = document.createElement("div");
@@ -119,13 +214,13 @@ function displayCards(items) {
         <p class=""><i class="fa-solid fa-dollar-sign"></i> Price: ${price}$</p>
         <hr class="my-2 sm:my-3 md:my-4"/>
         <div class="flex items-center justify-between space-x-1 sm:space-x-3 md:space-x-4">
-          <button onclick="showImage('${item.image}')" class="border-2 border-gray-200 px-2 py-1 rounded-lg">
+          <button onclick="showImage('${
+            item.image
+          }')" class="border-2 border-gray-200 px-2 py-1 rounded-lg">
             <i class="fa-regular fa-thumbs-up"></i>
             </button>
-              <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary ">Adopt</button>
-            <button class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary t">Details</button>
-        </div>
-    </div>
+            <button onclick="countModal()" class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary ">Adopt</button>
+            <button onclick="showModal(${item.id})" class="border-2 border-gray-200 px-2 py-1 rounded-lg text-primary">Details</button>    </div>
 `;
 
     cardContainer.appendChild(card);
@@ -133,15 +228,18 @@ function displayCards(items) {
 }
 const displayCategory = (categories) => {
   const categoryContainer = document.getElementById("categories");
+
   categoryContainer.innerHTML = "";
 
   categories.forEach((item) => {
     const buttonContainer = document.createElement("div");
 
     buttonContainer.innerHTML = `
-       <button onclick="categoryCard('${item.category}')" class="flex items-center justify-center flex-row lg:py-5 sm:px-3 md:px-10">              <img src="${item.category_icon}" class="w-7 h-7 mr-2" />
-              <span class="text-sm md:text-base">${item.category}</span>
-          </button>
+      <button onclick="categoryCard('${item.category}')" class="flex items-center justify-center flex-row lg:py-5 sm:px-3 md:px-10">
+    <img src="${item.category_icon}" class="w-7 h-7 mr-2" />
+    
+</button>
+
     `;
 
     buttonContainer.className =
