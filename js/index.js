@@ -1,3 +1,13 @@
+// manu-bar
+document.getElementById("menu-toggle").addEventListener("click", function () {
+  var menuItems = document.getElementById("menu-items");
+  if (menuItems.classList.contains("hidden")) {
+    menuItems.classList.remove("hidden");
+  } else {
+    menuItems.classList.add("hidden");
+  }
+});
+
 
 const loadData = async () => {
   const res = await fetch(
@@ -113,7 +123,7 @@ function displayPetsData(pets) {
                 <img
                   src="${image}"
                   alt="Shoes"
-                  class="rounded-xl object-cover"
+                  class="rounded-xl object-cover md:h-72 "
                 />
               </figure>
               <div class="px-4 pt-3">

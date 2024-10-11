@@ -11,7 +11,7 @@
       type="text/css"
     />
     <!-- css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Font Family -->
@@ -40,13 +40,12 @@
         },
       };
     </script>
-    <style>
-    </style>
+    <style></style>
   </head>
   <body class="font-lato">
     <header>
       <nav
-        class="navbar flex justify-between items-center w-full px-5 md:w-11/12 mx-auto pt-5"
+        class="navbar flex justify-between items-center w-full px-5 md:w-11/12 mx-auto pt-5 relative"
       >
         <div class="navbar-start">
           <div class="flex items-center gap-2">
@@ -54,20 +53,29 @@
             <h2 class="lg:text-3xl md:text-2xl text-lg font-bold">Peddy</h2>
           </div>
         </div>
-        <div class="navbar-center hidden md:block lg:text-lg text-sm lg:flex">
-          <ul class="flex gap-2 md:gap-3 lg:gap-8">
-            <li><a>Home</a></li>
-            <li><a>Shop</a></li>
-            <li><a>Contact</a></li>
+        <div class="navbar-end md:hidden">
+          <button id="menu-toggle" class="text-primary text-3xl">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div
+          id="menu-items"
+          class="navbar-center absolute right-0 top-12 hidden md:flex flex-col gap-4 bg-white shadow-lg md:shadow-none z-50 p-4 rounded-md md:static md:flex-row lg:text-lg text-sm"
+        >
+          <ul class="flex flex-col gap-4 md:flex-row items-center">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
-        <div class="navbar-end">
+        <div class="navbar-end hidden md:flex">
           <div
             class="border-2 flex justify-center items-center border-primary text-primary w-9 h-9 rounded-full text-center shadow-md shadow-white"
           >
             <i class="fa-solid fa-user-tie"></i>
           </div>
         </div>
+              
       </nav>
       <!-- banner -->
       <section class="mt-14 text-center w-full md:w-11/12 mx-auto">
@@ -150,9 +158,10 @@
             <img src="/images//error.webp" alt="" />
             <p class="text-2xl font-bold">No Information Available</p>
             <p class="w-[80%]">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a.
+              At the moment, no information is available on this subject. If any
+              relevant details or additional data are provided, it will help in
+              gathering more accurate information. Please feel free to check
+              again later for updates.
             </p>
           </div>
           <div
