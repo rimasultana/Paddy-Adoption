@@ -22,7 +22,7 @@ function displayCatagoryButton(buttons) {
     div.innerHTML = `
     <div id="btn-${category}"
           onclick="handleClickLoadData('${category}')"
-          class="text-center hover:bg-primary category-btn  hover:text-white transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary w-48 rounded-md py-3"
+          class="text-center  category-btn   transition-all duration-300 flex items-center justify-center gap-2 border-2 border-primary w-48 rounded-md py-3"
         >
           <img
             class="w-10 h-10"
@@ -45,7 +45,7 @@ async function handleSortOrder(order = "desc") {
     "https://openapi.programming-hero.com/api/peddy/pets"
   );
   const data = await res.json();
-  const pets = data.pets.slice(0, 3);
+  const pets = data.pets;
   pets.sort((a, b) => {
     const priceA = a.price ?? 0;
     const priceB = b.price ?? 0;
@@ -57,7 +57,7 @@ async function handleSortOrder(order = "desc") {
     }
   });
   setTimeout(() => {
-    displayPetsData(data.pets);
+    displayPetsData(pets);
   }, 2000);
 }
 async function handleClickLoadData(petsName) {
@@ -128,10 +128,10 @@ function displayPetsData(pets) {
                   Birth: ${date_of_birth ? date_of_birth : "Not Available"}
                 </p>
                 <p class="">
-                  <i class="fa-solid fa-mercury"></i> Gender: ${gender}
+                  <i class="fa-solid fa-mercury"></i> Gender: ${gender ? gender : "Not Available"}
                 </p>
                 <p class="">
-                  <i class="fa-solid fa-dollar-sign"></i> Price: ${price}$
+                  <i class="fa-solid fa-dollar-sign"></i> Price: ${price ? `${price} $`: "Not Available"}
                 </p>
                 <hr class="my-2 sm:my-3 md:my-4" />
                 <div class="flex items-center justify-between pb-6">
@@ -201,13 +201,13 @@ async function displayModal(petId) {
                 Birth: ${date_of_birth ? date_of_birth : "Not Available"}
               </p>
               <p class="">
-                <i class="fa-solid fa-mercury"></i> Gender: ${gender}
+                <i class="fa-solid fa-mercury"></i> Gender: ${gender ? gender : "Not Available"}
               </p>
               <p class="">
-                <i class="fa-solid fa-dollar-sign"></i> Price: ${price}$
+                  <i class="fa-solid fa-dollar-sign"></i> Price: ${price ? `${price}$`: "Not Available"}
               </p>
               <p class="">
-                <i class="fa-solid fa-mercury"></i> Vaccinated Status: ${vaccinated_status}
+                <i class="fa-solid fa-mercury"></i> Vaccinated Status: ${vaccinated_status ? vaccinated_status : "Not Available"}
               </p>
             </div>
             <div>
@@ -218,7 +218,6 @@ async function displayModal(petId) {
             </div>
           </div>
           <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
             <button class="btn w-full">Close</button>
           </form>
         </div>
@@ -238,7 +237,7 @@ function countModal(button) {
       <div class="flex items-center flex-col"> 
         <img src="https://img.icons8.com/?size=80&id=aUiThmwNs5sO&format=png" style="width: 80px; height: auto;" />  
         <br/>
-        <strong class="text-3xl font-bold">Congratulations</strong><br/>
+        <strong class="text-3xl font-bold">Congratulations!</strong><br/>
         Adoption process is starting for your pet.<br/>
         <b class="text-2xl text-primary">${countdown}</b>
       </div>
